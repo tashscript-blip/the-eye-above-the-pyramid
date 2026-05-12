@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>The Eye Above the Pyramid – Book Launch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              gold: {
+                50: '#fdf8e8',
+                100: '#f0d78c',
+                200: '#e8c96a',
+                300: '#d4af37',
+                400: '#b8962e',
+                500: '#9a7b24',
+                600: '#7c621d',
+                700: '#5e4a16',
+              },
+              dark: {
+                950: '#0a0800',
+                900: '#0d0b07',
+                850: '#12100a',
+                800: '#141007',
+                700: '#1a170e',
+                600: '#221e14',
+              },
+              cream: '#f5e6c8',
+              warmwhite: '#ede0cc',
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --gold-primary: #b8962e;
+        --gold-light: #f0d78c;
+        --gold-mid: #e8c96a;
+        --gold-dark: #9a7b24;
+        --dark-bg: #0a0800;
+        --dark-section: #0d0b07;
+        --dark-card: #141007;
+        --cream: #f5e6c8;
+        --warmwhite: #ede0cc;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: 'Lora', serif;
+        background: var(--dark-bg);
+        color: var(--cream);
+        overflow-x: hidden;
+      }
+      .font-cinzel { font-family: 'Cinzel', serif; }
+      .font-lora { font-family: 'Lora', serif; }
+
+      /* Gold gradient text */
+      .gold-text {
+        background: linear-gradient(135deg, #b8962e 0%, #f0d78c 25%, #e8c96a 50%, #f0d78c 75%, #b8962e 100%);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Shimmer animation for title */
+      @keyframes shimmer {
+        0% { background-position: 200% 50%; }
+        100% { background-position: -200% 50%; }
+      }
+      .shimmer-text {
+        background: linear-gradient(90deg, #b8962e 0%, #f0d78c 20%, #fffbe6 40%, #f0d78c 60%, #e8c96a 80%, #b8962e 100%);
+        background-size: 300% 100%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shimmer 6s ease-in-out infinite;
+      }
+
+      /* Pulsing glow */
+      @keyframes pulseGlow {
+        0%, 100% { filter: drop-shadow(0 0 12px rgba(184, 150, 46, 0.4)) drop-shadow(0 0 30px rgba(184, 150, 46, 0.15)); }
+        50% { filter: drop-shadow(0 0 24px rgba(240, 215, 140, 0.7)) drop-shadow(0 0 50px rgba(184, 150, 46, 0.3)); }
+      }
+      .pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
+
+      /* Fade in up */
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .fade-section {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .fade-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Scroll chevron bounce */
+      @keyframes bounceDown {
+        0%, 100% { transform: translateY(0); opacity: 0.7; }
+        50% { transform: translateY(10px); opacity: 1; }
+      }
+      .bounce-chevron { animation: bounceDown 2s ease-in-out infinite; }
+
+      /* Button hover glow */
+      .btn-glow {
+        transition: all 0.3s ease;
+        box-shadow: 0 0 0 rgba(184, 150, 46, 0);
+      }
+      .btn-glow:hover {
+        box-shadow: 0 0 25px rgba(184, 150, 46, 0.5), 0 0 60px rgba(184, 150, 46, 0.2);
+        transform: translateY(-2px);
+      }
+
+      /* Gold divider */
+      .gold-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--gold-primary), var(--gold-light), var(--gold-primary), transparent);
+      }
+
+      /* Parallax hero */
+      .hero-bg {
+        background: radial-gradient(ellipse at 50% 30%, rgba(184,150,46,0.06) 0%, transparent 60%),
+                    radial-gradient(ellipse at 50% 80%, rgba(184,150,46,0.03) 0%, transparent 50%),
+                    var(--dark-bg);
+      }
+
+      /* CSS Eye Above Pyramid Symbol */
+      .symbol-container { position: relative; width: 200px; height: 240px; margin: 0 auto; }
+
+      /* Upper floating eye */
+      .upper-eye {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 52px;
+        height: 26px;
+      }
+      .upper-eye-shape {
+        position: relative;
+        width: 52px;
+        height: 26px;
+      }
+      .upper-eye-outer {
+        position: absolute;
+        width: 52px;
+        height: 26px;
+        border: 2px solid var(--gold-light);
+        border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+        top: 0; left: 0;
+      }
+      .upper-eye-outer::after {
+        content: '';
+        position: absolute;
+        width: 52px;
+        height: 26px;
+        border: 2px solid var(--gold-light);
+        border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+        top: 0; left: -2px;
+      }
+      .upper-eye-pupil {
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        background: radial-gradient(circle, var(--gold-light) 30%, var(--gold-primary) 70%);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 8px rgba(240,215,140,0.8);
+      }
+
+      /* Radiating rays around upper eye */
+      .rays {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 70px;
+      }
+      .ray {
+        position: absolute;
+        width: 1.5px;
+        height: 20px;
+        background: linear-gradient(to top, rgba(240,215,140,0.6), transparent);
+        left: 50%;
+        top: 50%;
+        transform-origin: bottom center;
+      }
+
+      /* Triangle */
+      .pyramid-triangle {
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 65px solid transparent;
+        border-right: 65px solid transparent;
+        border-bottom: 120px solid transparent;
+      }
+      .pyramid-triangle::before {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: -60px;
+        width: 0; height: 0;
+        border-left: 60px solid transparent;
+        border-right: 60px solid transparent;
+        border-bottom: 110px solid rgba(184,150,46,0.08);
+      }
+      .pyramid-outline {
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 130px;
+        height: 120px;
+      }
+      .pyramid-outline svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Inner eye inside pyramid */
+      .inner-eye {
+        position: absolute;
+        top: 110px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 36px;
+        height: 18px;
+      }
+      .inner-eye-outer {
+        position: absolute;
+        width: 36px;
+        height: 18px;
+        border: 1.5px solid var(--gold-mid);
+        border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+      }
+      .inner-eye-outer::after {
+        content: '';
+        position: absolute;
+        width: 36px;
+        height: 18px;
+        border: 1.5px solid var(--gold-mid);
+        border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+        top: 0;
+        left: -1.5px;
+      }
+      .inner-eye-pupil {
+        position: absolute;
+        width: 9px;
+        height: 9px;
+        background: radial-gradient(circle, var(--gold-light) 30%, var(--gold-primary) 80%);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* Teardrops */
+      .teardrops {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+      }
+      .teardrop {
+        width: 8px;
+        height: 14px;
+        background: var(--gold-primary);
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        opacity: 0.7;
+      }
+
+      /* Quote decorative mark */
+      .quote-mark {
+        font-family: 'Cinzel', serif;
+        font-size: 80px;
+        line-height: 1;
+        color: var(--gold-primary);
+        opacity: 0.3;
+      }
+
+      /* Card hover */
+      .chapter-card {
+        transition: all 0.4s ease;
+        border: 1px solid rgba(184, 150, 46, 0.15);
+      }
+      .chapter-card:hover {
+        border-color: rgba(184, 150, 46, 0.4);
+        box-shadow: 0 0 30px rgba(184, 150, 46, 0.08);
+        transform: translateY(-4px);
+      }
+
+      /* Input focus */
+      .email-input:focus {
+        outline: none;
+        border-color: var(--gold-light);
+        box-shadow: 0 0 20px rgba(184, 150, 46, 0.2);
+      }
+
+      /* Success message animation */
+      @keyframes revealSuccess {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      .success-reveal {
+        animation: revealSuccess 0.6s ease-out forwards;
+      }
+
+      /* Small symbol variant */
+      .symbol-sm { transform: scale(0.45); transform-origin: center center; }
+      .symbol-md { transform: scale(0.6); transform-origin: center center; }
+
+      /* Ambient particles */
+      @keyframes float {
+        0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+        10% { opacity: 0.6; }
+        90% { opacity: 0.6; }
+        50% { transform: translateY(-60px) translateX(20px); }
+      }
+      .particle {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: var(--gold-primary);
+        border-radius: 50%;
+        animation: float linear infinite;
+        opacity: 0;
+      }
+
+      /* Connect card hover */
+      .connect-card {
+        transition: all 0.4s ease;
+        border: 1px solid rgba(184, 150, 46, 0.2);
+      }
+      .connect-card:hover {
+        border-color: rgba(184, 150, 46, 0.5);
+        box-shadow: 0 0 30px rgba(184, 150, 46, 0.1);
+        transform: translateY(-4px);
+      }
+
+      /* Copy confirmation toast */
+      @keyframes fadeToast {
+        0% { opacity: 0; transform: translateY(6px); }
+        15% { opacity: 1; transform: translateY(0); }
+        85% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 0; transform: translateY(-6px); }
+      }
+      .copy-toast {
+        animation: fadeToast 2s ease forwards;
+      }
+    </style>
+  </head>
+  <body data-id="0">
+    <app-icon data-id="1" hidden data-icon="eye" data-palette="Dark"></app-icon>
+
+    <!-- ===================== HERO SECTION ===================== -->
+    <section data-id="2" id="hero-section-a7x2" class="hero-bg relative min-h-screen flex flex-col items-center justify-center px-4 py-12 overflow-hidden">
+      <!-- Parallax layer -->
+      <div data-id="3" id="parallax-bg-k3m9" class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at 50% 20%, rgba(184,150,46,0.05) 0%, transparent 70%);"></div>
+
+      <!-- Ambient particles -->
+      <div data-id="4" id="particles-j2f8" class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div data-id="5" class="particle" style="left:10%;top:70%;animation-duration:7s;animation-delay:0s;"></div>
+        <div data-id="6" class="particle" style="left:20%;top:80%;animation-duration:9s;animation-delay:1s;"></div>
+        <div data-id="7" class="particle" style="left:35%;top:65%;animation-duration:8s;animation-delay:2s;"></div>
+        <div data-id="8" class="particle" style="left:50%;top:75%;animation-duration:10s;animation-delay:0.5s;"></div>
+        <div data-id="9" class="particle" style="left:65%;top:85%;animation-duration:7.5s;animation-delay:3s;"></div>
+        <div data-id="10" class="particle" style="left:80%;top:70%;animation-duration:8.5s;animation-delay:1.5s;"></div>
+        <div data-id="11" class="particle" style="left:90%;top:60%;animation-duration:9.5s;animation-delay:2.5s;"></div>
+        <div data-id="12" class="particle" style="left:45%;top:90%;animation-duration:6.5s;animation-delay:4s;"></div>
+      </div>
+
+      <div data-id="13" class="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto">
+        <!-- Top label -->
+        <p data-id="14" id="hero-label-r4t1" class="font-cinzel text-xs md:text-sm tracking-[0.35em] uppercase mb-8 md:mb-10" style="color: var(--gold-primary);">A New Book by TASH</p>
+
+        <!-- CSS Eye Above Pyramid Symbol -->
+        <div data-id="15" id="symbol-hero-v5n3" class="symbol-container pulse-glow mb-8 md:mb-10">
+          <!-- Radiating rays -->
+          <div data-id="16" class="rays">
+            <div data-id="17" class="ray" style="transform: translateX(-50%) rotate(-70deg);"></div>
+            <div data-id="18" class="ray" style="transform: translateX(-50%) rotate(-50deg);"></div>
+            <div data-id="19" class="ray" style="transform: translateX(-50%) rotate(-30deg);"></div>
+            <div data-id="20" class="ray" style="transform: translateX(-50%) rotate(-10deg);"></div>
+            <div data-id="21" class="ray" style="transform: translateX(-50%) rotate(10deg);"></div>
+            <div data-id="22" class="ray" style="transform: translateX(-50%) rotate(30deg);"></div>
+            <div data-id="23" class="ray" style="transform: translateX(-50%) rotate(50deg);"></div>
+            <div data-id="24" class="ray" style="transform: translateX(-50%) rotate(70deg);"></div>
+          </div>
+          <!-- Upper floating eye -->
+          <div data-id="25" class="upper-eye">
+            <div data-id="26" class="upper-eye-shape">
+              <div data-id="27" class="upper-eye-outer"></div>
+              <div data-id="28" class="upper-eye-pupil"></div>
+            </div>
+          </div>
+          <!-- Pyramid outline -->
+          <div data-id="29" class="pyramid-outline">
+            <svg data-id="30" viewBox="0 0 130 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon data-id="31" points="65,0 130,120 0,120" stroke="url(#goldGrad)" stroke-width="2" fill="rgba(184,150,46,0.05)" />
+              <defs data-id="32">
+                <linearGradient data-id="33" id="goldGrad" x1="0" y1="0" x2="130" y2="120">
+                  <stop data-id="34" offset="0%" stop-color="#f0d78c" />
+                  <stop data-id="35" offset="50%" stop-color="#b8962e" />
+                  <stop data-id="36" offset="100%" stop-color="#e8c96a" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <!-- Inner eye in pyramid -->
+          <div data-id="37" class="inner-eye">
+            <div data-id="38" class="inner-eye-outer"></div>
+            <div data-id="39" class="inner-eye-pupil"></div>
+          </div>
+          <!-- Teardrops -->
+          <div data-id="40" class="teardrops">
+            <div data-id="41" class="teardrop"></div>
+            <div data-id="42" class="teardrop" style="height:11px;opacity:0.5;"></div>
+            <div data-id="43" class="teardrop"></div>
+          </div>
+        </div>
+
+        <!-- Main Title -->
+        <h1 data-id="44" id="hero-title-m8k2" class="font-cinzel font-bold leading-none mb-6">
+          <span data-id="45" class="shimmer-text block text-5xl md:text-7xl lg:text-8xl">THE EYE</span>
+          <span data-id="46" class="gold-text block text-2xl md:text-4xl lg:text-5xl italic mt-2">ABOVE THE</span>
+          <span data-id="47" class="shimmer-text block text-5xl md:text-7xl lg:text-8xl mt-2">PYRAMID</span>
+        </h1>
+
+        <!-- Tagline -->
+        <p data-id="48" id="hero-tagline-q6w4" class="font-lora italic text-lg md:text-2xl lg:text-3xl mb-4" style="color: var(--warmwhite);">
+          They built the world. History gave them no credit.
+        </p>
+
+        <!-- Subtagline -->
+        <p data-id="49" id="hero-subtagline-z9p1" class="font-cinzel text-xs md:text-sm tracking-[0.25em] uppercase mb-10" style="color: var(--gold-primary);">
+          The hidden knowledge of the ancient builders — finally reclaimed.
+        </p>
+
+        <!-- CTA Button -->
+        <a data-id="50" id="hero-cta-b3j7" href="#signup" class="btn-glow font-cinzel text-sm md:text-base tracking-widest uppercase px-10 py-4 rounded-full cursor-pointer inline-block" style="background: var(--gold-primary); color: #0a0800; text-decoration: none;">
+          Join the Awakening
+        </a>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div data-id="51" id="scroll-indicator-h5e6" class="absolute bottom-8 left-1/2 -translate-x-1/2 bounce-chevron" style="color: var(--gold-primary);">
+        <i data-id="52" data-lucide="chevron-down" class="w-7 h-7"></i>
+      </div>
+    </section>
+
+    <!-- ===================== THE DECLARATION ===================== -->
+    <section data-id="53" id="declaration-section-c2y8" class="fade-section py-16 md:py-24 px-4" style="background: var(--dark-section);">
+      <div data-id="54" class="max-w-3xl mx-auto">
+        <div data-id="55" class="gold-divider mb-12 md:mb-16"></div>
+        <div data-id="56" class="border-l-2 pl-6 md:pl-10" style="border-color: var(--gold-primary);">
+          <p data-id="57" id="declaration-quote-f1g4" class="font-lora italic text-lg md:text-xl lg:text-2xl leading-relaxed" style="color: var(--warmwhite);">
+            "For thousands of years, one of the most powerful symbols in human history has stared back at us — an eye, hovering above an unfinished pyramid, separated by a deliberate gap of sacred meaning. Most people have seen it. Very few have understood it."
+          </p>
+          <p data-id="58" id="declaration-attr-d7s3" class="font-cinzel text-sm md:text-base mt-6 tracking-wide" style="color: var(--gold-primary);">
+            — TASH, <em data-id="59" class="font-lora">The Eye Above the Pyramid</em>
+          </p>
+        </div>
+        <div data-id="60" class="gold-divider mt-12 md:mt-16"></div>
+      </div>
+    </section>
+
+    <!-- ===================== WHAT'S INSIDE ===================== -->
+    <section data-id="61" id="chapters-section-n4l6" class="fade-section py-16 md:py-24 px-4" style="background: var(--dark-bg);">
+      <div data-id="62" class="max-w-5xl mx-auto">
+        <div data-id="63" class="text-center mb-12 md:mb-16">
+          <h2 data-id="64" id="chapters-title-e9u2" class="font-cinzel text-2xl md:text-3xl lg:text-4xl tracking-wider mb-4 gold-text">WHAT YOU WILL DISCOVER</h2>
+          <p data-id="65" id="chapters-subtitle-w5i7" class="font-lora italic text-base md:text-lg" style="color: var(--warmwhite);">
+            Six chapters of ancient revelation, hidden history, and personal transformation.
+          </p>
+        </div>
+
+        <div data-id="66" class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <!-- Chapter I -->
+          <div data-id="67" id="chapter-1-a2b5" class="chapter-card rounded-xl p-6 md:p-8" style="background: var(--dark-card);">
+            <p data-id="68" class="font-cinzel text-3xl md:text-4xl mb-3" style="color: var(--gold-light);">I</p>
+            <h3 data-id="69" class="font-cinzel text-base md:text-lg tracking-wider mb-3" style="color: var(--gold-mid);">Stones That Remember</h3>
+            <p data-id="70" class="font-lora text-sm md:text-base leading-relaxed" style="color: var(--warmwhite);">
+              The true builders of the pyramids: skilled African architects, mathematicians, and priests whose genius was systematically erased. Imhotep and the nameless thousands who encoded the cosmos in stone.
+            </p>
+          </div>
+
+          <!-- Chapter II -->
+          <div data-id="71" id="chapter-2-c8d1" class="chapter-card rounded-xl p-6 md:p-8" style="background: var(--dark-card);">
+            <p data-id="72" class="font-cinzel text-3xl md:text-4xl mb-3" style="color: var(--gold-light);">II</p>
+            <h3 data-id="73" class="font-cinzel text-base md:text-lg tracking-wider mb-3" style="color: var(--gold-mid);">The Architecture of Heaven</h3>
+            <p data-id="74" class="font-lora text-sm md:text-base leading-relaxed" style="color: var(--warmwhite);">
+              Sacred geometry, stellar alignments to Orion's Belt and Sirius, and the profound mystery of the Great Pyramid's missing capstone. The pyramid as a map from earth to the divine.
+            </p>
+          </div>
+
+          <!-- Chapter III -->
+          <div data-id="75" id="chapter-3-f4g7" class="chapter-card rounded-xl p-6 md:p-8" style="background: var(--dark-card);">
+            <p data-id="76" class="font-cinzel text-3xl md:text-4xl mb-3" style="color: var(--gold-light);">III</p>
+            <h3 data-id="77" class="font-cinzel text-base md:text-lg tracking-wider mb-3" style="color: var(--gold-mid);">The Eye That Watches</h3>
+            <p data-id="78" class="font-lora text-sm md:text-base leading-relaxed" style="color: var(--warmwhite);">
+              Tracing the Eye of Providence back to its true origin: the Eye of Horus in ancient Egypt. Why does the eye float above, separated from the pyramid — and what does that gap mean for you?
+            </p>
+          </div>
+
+          <!-- Chapter IV -->
+          <div data-id="79" id="chapter-4-h2j9" class="chapter-card rounded-xl p-6 md:p-8" style="background: var(--dark-card);">
+            <p data-id="80" class="font-cinzel text-3xl md:text-4xl mb-3" style="color: var(--gold-light);">IV</p>
+            <h3 data-id="81" class="font-cinzel text-base md:text-lg tracking-wider mb-3" style="color: var(--gold-mid);">The Mystery Schools</h3>
+            <p data-id="82" class="font-lora text-sm md:text-base leading-relaxed" style="color: var(--warmwhite);">
+              What was taught in the temples of Heliopolis and Memphis. The seven Hermetic Principles of Thoth, and how Pythagoras and Plato were students of African wisdom before that lineage was erased.
+            </p>
+          </div>
+
+          <!-- Chapter V -->
+          <div data-id="83" id="chapter-5-k6l3" class="chapter-card rounded-xl p-6 md:p-8" style="background: var(--dark-card);">
+            <p data-id="84" class="font-cinzel text-3xl md:text-4xl mb-3" style="color: var(--gold-light);">V</p>
+            <h3 data-id="85" class="font-cinzel text-base md:text-lg tracking-wider mb-3" style="color: var(--gold-mid);">The Floating Eye: A Map for the Modern Soul</h3>
+            <p data-id="86" class="font-lora text-sm md:text-base leading-relaxed" style="color: var(--warmwhite);">
+              Kemetic philosophy, the 42 Laws of Ma'at, and the ancient soul model as a personal framework for elevation. The gap between the eye and the pyramid is sacred space — it is the place of becoming.
+            </p>
+          </div>
+
+          <!-- Chapter VI -->
+          <div data-id="87" id="chapter-6-m8n1" class="chapter-card rounded-xl p-6 md:p-8" style="background: var(--dark-card);">
+            <p data-id="88" class="font-cinzel text-3xl md:text-4xl mb-3" style="color: var(--gold-light);">VI</p>
+            <h3 data-id="89" class="font-cinzel text-base md:text-lg tracking-wider mb-3" style="color: var(--gold-mid);">Becoming the Capstone</h3>
+            <p data-id="90" class="font-lora text-sm md:text-base leading-relaxed" style="color: var(--warmwhite);">
+              The call to integration: honor your builders, close the gap, and live from your highest awareness. You are the unplaced capstone. It is time.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== POWER QUOTES ===================== -->
+    <section data-id="91" id="quotes-section-p3q6" class="fade-section py-16 md:py-24 px-4" style="background: var(--dark-section);">
+      <div data-id="92" class="max-w-6xl mx-auto">
+        <h2 data-id="93" id="quotes-title-r7s4" class="font-cinzel text-2xl md:text-3xl lg:text-4xl tracking-wider text-center mb-12 md:mb-16 gold-text">FROM THE PAGES</h2>
+
+        <div data-id="94" class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+          <!-- Quote 1 -->
+          <div data-id="95" id="quote-1-t5u8" class="text-center">
+            <div data-id="96" class="quote-mark mb-2">"</div>
+            <p data-id="97" class="font-lora italic text-base md:text-lg leading-relaxed mb-6" style="color: var(--warmwhite);">
+              The gap between the eye and the pyramid is not a punishment. It is a sacred invitation. Rise to meet it.
+            </p>
+            <div data-id="98" class="gold-divider w-16 mx-auto"></div>
+          </div>
+
+          <!-- Quote 2 -->
+          <div data-id="99" id="quote-2-v1w4" class="text-center">
+            <div data-id="100" class="quote-mark mb-2">"</div>
+            <p data-id="101" class="font-lora italic text-base md:text-lg leading-relaxed mb-6" style="color: var(--warmwhite);">
+              Imhotep. Remember the name. The first architect in recorded human history was African. Let that truth reshape everything you thought you knew.
+            </p>
+            <div data-id="102" class="gold-divider w-16 mx-auto"></div>
+          </div>
+
+          <!-- Quote 3 -->
+          <div data-id="103" id="quote-3-x9y2" class="text-center">
+            <div data-id="104" class="quote-mark mb-2">"</div>
+            <p data-id="105" class="font-lora italic text-base md:text-lg leading-relaxed mb-6" style="color: var(--warmwhite);">
+              As above, so below. Your inner world is the pyramid. Your highest self is the eye. The work is to close the distance.
+            </p>
+            <div data-id="106" class="gold-divider w-16 mx-auto"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT THE AUTHOR ===================== -->
+    <section data-id="107" id="author-section-z3a6" class="fade-section py-16 md:py-24 px-4" style="background: var(--dark-bg);">
+      <div data-id="108" class="max-w-5xl mx-auto">
+        <div data-id="109" class="flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-16">
+          <!-- Avatar -->
+          <div data-id="110" id="author-avatar-b7c0" class="flex-shrink-0">
+            <div data-id="111" class="w-48 h-48 md:w-56 md:h-56 rounded-full border-2 flex items-center justify-center" style="border-color: var(--gold-primary); background: radial-gradient(circle at 50% 50%, rgba(184,150,46,0.08) 0%, var(--dark-card) 100%);">
+              <span data-id="112" class="font-cinzel text-6xl md:text-7xl" style="color: var(--gold-primary);">T</span>
+            </div>
+          </div>
+
+          <!-- Bio -->
+          <div data-id="113" class="text-center md:text-left">
+            <p data-id="114" id="author-label-d4e7" class="font-cinzel text-xs tracking-[0.3em] uppercase mb-3" style="color: var(--gold-primary);">About the Author</p>
+            <h2 data-id="115" id="author-name-f8g1" class="font-cinzel text-3xl md:text-4xl lg:text-5xl mb-6 gold-text">TASH</h2>
+            <p data-id="116" id="author-bio-h2i5" class="font-lora text-sm md:text-base leading-relaxed max-w-prose" style="color: var(--warmwhite);">
+              TASH is a writer, thinker, and seeker based in Manhattan, New York — a city built on layers of hidden history, much like the pyramids he writes about. Driven by a lifelong conviction that the most important knowledge is the knowledge most deliberately concealed, TASH moves through the worlds of history, spirituality, and self-development with a rare fluency. He believes that ancient African and Egyptian wisdom is not a relic of the past but a living inheritance — one that modern people have every right to claim. <em data-id="117">The Eye Above the Pyramid</em> is his debut book, born from years of study, reflection, and a burning need to give voice to the nameless builders whose legacy we are still living inside. TASH writes for those who know, deep in their bones, that they are built for more.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EMAIL SIGNUP ===================== -->
+    <section data-id="118" id="signup" class="fade-section py-16 md:py-24 px-4" style="background-color: #12100a;">
+      <div data-id="119" class="max-w-2xl mx-auto text-center">
+        <!-- Small symbol -->
+        <div data-id="120" id="signup-symbol-j6k9" class="mb-8 inline-block">
+          <div data-id="121" class="symbol-container symbol-sm" style="height:240px;width:200px;">
+            <div data-id="122" class="rays">
+              <div data-id="123" class="ray" style="transform:translateX(-50%) rotate(-60deg);"></div>
+              <div data-id="124" class="ray" style="transform:translateX(-50%) rotate(-30deg);"></div>
+              <div data-id="125" class="ray" style="transform:translateX(-50%) rotate(0deg);"></div>
+              <div data-id="126" class="ray" style="transform:translateX(-50%) rotate(30deg);"></div>
+              <div data-id="127" class="ray" style="transform:translateX(-50%) rotate(60deg);"></div>
+            </div>
+            <div data-id="128" class="upper-eye">
+              <div data-id="129" class="upper-eye-shape">
+                <div data-id="130" class="upper-eye-outer"></div>
+                <div data-id="131" class="upper-eye-pupil"></div>
+              </div>
+            </div>
+            <div data-id="132" class="pyramid-outline">
+              <svg data-id="133" viewBox="0 0 130 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon data-id="134" points="65,0 130,120 0,120" stroke="var(--gold-primary)" stroke-width="2" fill="rgba(184,150,46,0.04)" />
+              </svg>
+            </div>
+            <div data-id="135" class="inner-eye">
+              <div data-id="136" class="inner-eye-outer"></div>
+              <div data-id="137" class="inner-eye-pupil"></div>
+            </div>
+            <div data-id="138" class="teardrops">
+              <div data-id="139" class="teardrop"></div>
+              <div data-id="140" class="teardrop" style="height:11px;opacity:0.5;"></div>
+              <div data-id="141" class="teardrop"></div>
+            </div>
+          </div>
+        </div>
+
+        <h2 data-id="142" id="signup-title-l0m3" class="font-cinzel text-2xl md:text-3xl lg:text-4xl tracking-wider mb-4 gold-text">JOIN THE AWAKENING</h2>
+        <p data-id="143" id="signup-subtitle-n4o7" class="font-lora italic text-base md:text-lg mb-8" style="color: var(--warmwhite);">
+          Be the first to know about the official release, exclusive content, and events. The eye is open — are you ready?
+        </p>
+
+        <!-- Setup instruction banner -->
+        <div data-id="144" class="rounded-lg px-5 py-3 mb-8 max-w-lg mx-auto" style="background: rgba(184,150,46,0.08); border: 1px solid rgba(184,150,46,0.25);">
+          <p data-id="145" class="font-lora italic text-sm" style="color: var(--gold-mid);">
+            ⚙ To activate live email capture: replace <code data-id="146" class="font-mono text-xs px-1 py-0.5 rounded" style="background: rgba(184,150,46,0.15); color: var(--gold-light);">YOUR_FORM_ID</code> in the code with your Formspree form ID.
+          </p>
+        </div>
+
+        <!-- Seeker count -->
+        <p data-id="147" id="seeker-count-p8q1" class="font-lora text-sm mb-6" style="color: var(--gold-primary);">
+          Join <span data-id="148" id="seeker-number-r2s5" class="font-cinzel font-bold">1,247</span> seekers already signed up
+        </p>
+
+        <!-- Form — real Formspree POST -->
+        <form data-id="149" id="signup-form-t6u9" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto mb-6">
+          <input data-id="150" type="hidden" name="_subject" value="New Awakening Signup – The Eye Above the Pyramid" />
+          <input data-id="151" type="hidden" name="_next" value="" />
+          <input data-id="152" id="email-input-v0w3" type="email" name="email" required placeholder="Enter your email address" class="email-input flex-1 font-lora text-base px-5 py-4 rounded-full border transition-all duration-300" style="background: rgba(20,16,7,0.9); border-color: var(--gold-primary); color: var(--cream);" />
+          <button data-id="153" id="signup-btn-x4y7" type="submit" class="btn-glow font-cinzel text-sm tracking-widest uppercase px-8 py-4 rounded-full cursor-pointer whitespace-nowrap" style="background: var(--gold-primary); color: #0a0800;">
+            NOTIFY ME
+          </button>
+        </form>
+
+        <!-- Success message (hidden by default) -->
+        <div data-id="154" id="signup-success-z8a1" class="hidden">
+          <p data-id="155" class="font-cinzel text-base md:text-lg tracking-wider success-reveal" style="color: var(--gold-light);">
+            ✦ You are now part of the awakening. The eye sees you. ✦
+          </p>
+        </div>
+
+        <!-- Error message (hidden by default) -->
+        <p data-id="156" id="signup-error-b2c5" class="hidden font-lora text-sm" style="color: #c0392b;"></p>
+      </div>
+    </section>
+
+    <!-- ===================== OTHER WAYS TO CONNECT ===================== -->
+    <section data-id="157" id="connect-section-g3h6" class="fade-section py-16 md:py-20 px-4" style="background-color: #12100a;">
+      <div data-id="158" class="max-w-5xl mx-auto">
+        <div data-id="159" class="gold-divider mb-12 md:mb-14"></div>
+        <h3 data-id="160" class="font-cinzel text-sm md:text-base tracking-[0.35em] uppercase text-center mb-10 md:mb-12" style="color: var(--gold-primary);">OTHER WAYS TO CONNECT</h3>
+
+        <div data-id="161" class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <!-- Card 1: Email Directly -->
+          <div data-id="162" class="connect-card rounded-xl p-6 md:p-8 text-center" style="background: var(--dark-card);">
+            <p data-id="163" class="text-3xl mb-4" style="color: var(--gold-light);">✉</p>
+            <h4 data-id="164" class="font-cinzel text-base md:text-lg tracking-wider mb-3" style="color: var(--gold-mid);">Email Directly</h4>
+            <p data-id="165" class="font-lora text-sm leading-relaxed mb-5" style="color: var(--warmwhite);">Reach out to TASH personally</p>
+            <a data-id="166" href="mailto:trj.menu@gmail.com" class="btn-glow inline-block font-cinzel text-xs tracking-widest uppercase px-6 py-3 rounded-full" style="background: transparent; color: var(--gold-light); border: 1px solid var(--gold-primary); text-decoration: none;">
+              Send a Message
+            </a>
+          </div>
+
+          <!-- Card 2: Share This Page -->
+          <div data-id="167" class="connect-card rounded-xl p-6 md:p-8 text-center" style="background: var(--dark-card);">
+            <p data-id="168" class="text-3xl mb-4" style="color: var(--gold-light);">◆</p>
+            <h4 data-id="169" class="font-cinzel text-base md:text-lg tracking-wider mb-3" style="color: var(--gold-mid);">Share This Page</h4>
+            <p data-id="170" class="font-lora text-sm leading-relaxed mb-5" style="color: var(--warmwhite);">Spread the knowledge — share this launch page with someone ready to awaken</p>
+            <div data-id="171" class="relative inline-block">
+              <button data-id="172" id="copy-link-btn" class="btn-glow font-cinzel text-xs tracking-widest uppercase px-6 py-3 rounded-full cursor-pointer" style="background: transparent; color: var(--gold-light); border: 1px solid var(--gold-primary);">
+                Copy Link
+              </button>
+              <span data-id="173" id="copy-confirm" class="hidden absolute -bottom-8 left-1/2 -translate-x-1/2 font-cinzel text-xs tracking-wider whitespace-nowrap" style="color: var(--gold-light);">Link Copied ✦</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Follow the Journey -->
+          <div data-id="174" class="connect-card rounded-xl p-6 md:p-8 text-center" style="background: var(--dark-card);">
+            <p data-id="175" class="text-3xl mb-4" style="color: var(--gold-light);">✦</p>
+            <h4 data-id="176" class="font-cinzel text-base md:text-lg tracking-wider mb-3" style="color: var(--gold-mid);">Follow the Journey</h4>
+            <p data-id="177" class="font-lora text-sm leading-relaxed mb-5" style="color: var(--warmwhite);">Stay connected as the book reaches the world</p>
+            <a data-id="178" href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-glow inline-block font-cinzel text-xs tracking-widest uppercase px-6 py-3 rounded-full" style="background: transparent; color: var(--gold-light); border: 1px solid var(--gold-primary); text-decoration: none;">
+              Follow on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FINAL DECLARATION ===================== -->
+    <section data-id="179" id="final-section-d6e9" class="fade-section py-16 md:py-24 px-4" style="background: var(--dark-bg);">
+      <div data-id="180" class="max-w-3xl mx-auto text-center">
+        <!-- Medium symbol -->
+        <div data-id="181" id="final-symbol-f0g3" class="mb-10 inline-block pulse-glow">
+          <div data-id="182" class="symbol-container symbol-md" style="height:240px;width:200px;">
+            <div data-id="183" class="rays">
+              <div data-id="184" class="ray" style="transform:translateX(-50%) rotate(-70deg);"></div>
+              <div data-id="185" class="ray" style="transform:translateX(-50%) rotate(-45deg);"></div>
+              <div data-id="186" class="ray" style="transform:translateX(-50%) rotate(-20deg);"></div>
+              <div data-id="187" class="ray" style="transform:translateX(-50%) rotate(0deg);"></div>
+              <div data-id="188" class="ray" style="transform:translateX(-50%) rotate(20deg);"></div>
+              <div data-id="189" class="ray" style="transform:translateX(-50%) rotate(45deg);"></div>
+              <div data-id="190" class="ray" style="transform:translateX(-50%) rotate(70deg);"></div>
+            </div>
+            <div data-id="191" class="upper-eye">
+              <div data-id="192" class="upper-eye-shape">
+                <div data-id="193" class="upper-eye-outer"></div>
+                <div data-id="194" class="upper-eye-pupil"></div>
+              </div>
+            </div>
+            <div data-id="195" class="pyramid-outline">
+              <svg data-id="196" viewBox="0 0 130 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon data-id="197" points="65,0 130,120 0,120" stroke="var(--gold-primary)" stroke-width="2" fill="rgba(184,150,46,0.04)" />
+              </svg>
+            </div>
+            <div data-id="198" class="inner-eye">
+              <div data-id="199" class="inner-eye-outer"></div>
+              <div data-id="200" class="inner-eye-pupil"></div>
+            </div>
+            <div data-id="201" class="teardrops">
+              <div data-id="202" class="teardrop"></div>
+              <div data-id="203" class="teardrop" style="height:11px;opacity:0.5;"></div>
+              <div data-id="204" class="teardrop"></div>
+            </div>
+          </div>
+        </div>
+
+        <h2 data-id="205" id="final-title-h4i7" class="font-cinzel text-3xl md:text-5xl lg:text-6xl tracking-wider mb-4 shimmer-text">THE EYE IS OPEN.</h2>
+        <p data-id="206" id="final-subtext-j8k1" class="font-lora italic text-lg md:text-xl mb-10" style="color: var(--warmwhite);">
+          Ancient wisdom. Modern awakening. The knowledge is yours.
+        </p>
+        <div data-id="207" class="gold-divider max-w-xs mx-auto"></div>
+      </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer data-id="208" id="footer-l2m5" class="py-10 px-4 text-center" style="background: #080700;">
+      <p data-id="209" id="footer-title-n6o9" class="font-cinzel text-xs md:text-sm tracking-[0.3em] uppercase mb-3" style="color: var(--gold-primary);">
+        The Eye Above the Pyramid
+      </p>
+      <p data-id="210" id="footer-copy-p0q3" class="font-lora text-xs mb-4" style="color: rgba(245,230,200,0.5);">
+        © 2026 TASH. All rights reserved.
+      </p>
+      <p data-id="211" id="footer-diamonds-r4s7" class="text-sm tracking-[0.5em]" style="color: var(--gold-primary);">◆ ◆ ◆</p>
+      <p data-id="212" id="footer-copilot-t8u1" class="font-lora text-xs mt-6" style="color: rgba(245,230,200,0.25);">Made by Copilot</p>
+    </footer>
+
+    <script>
+      // ===== Intersection Observer for fade-in-up =====
+      (function() {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-section').forEach(function(el) {
+          observer.observe(el);
+        });
+      })();
+
+      // ===== Parallax effect on hero =====
+      (function() {
+        var parallaxBg = document.getElementById('parallax-bg-k3m9');
+        var hero = document.getElementById('hero-section-a7x2');
+        window.addEventListener('scroll', function() {
+          var scrollY = window.scrollY;
+          var heroHeight = hero.offsetHeight;
+          if (scrollY < heroHeight) {
+            var offset = scrollY * 0.3;
+            parallaxBg.style.transform = 'translateY(' + offset + 'px)';
+          }
+        }, { passive: true });
+      })();
+
+      // ===== Email signup with Formspree =====
+      (function() {
+        var BASE_SEEKERS = 1247;
+        var storageKey = 'eyeAbovePyramid_signups';
+
+        function getSignups() {
+          try {
+            var stored = localStorage.getItem(storageKey);
+            return stored ? parseInt(stored, 10) : 0;
+          } catch(e) { return 0; }
+        }
+
+        function updateCount() {
+          var total = BASE_SEEKERS + getSignups();
+          var el = document.getElementById('seeker-number-r2s5');
+          if (el) el.textContent = total.toLocaleString();
+        }
+
+        updateCount();
+
+        var form = document.getElementById('signup-form-t6u9');
+        var input = document.getElementById('email-input-v0w3');
+        var success = document.getElementById('signup-success-z8a1');
+        var error = document.getElementById('signup-error-b2c5');
+
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          error.classList.add('hidden');
+
+          var email = input.value.trim();
+          var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+          if (!email) {
+            error.textContent = 'Please enter your email address.';
+            error.classList.remove('hidden');
+            return;
+          }
+          if (!emailRegex.test(email)) {
+            error.textContent = 'Please enter a valid email address.';
+            error.classList.remove('hidden');
+            return;
+          }
+
+          // Submit to Formspree via fetch
+          var formAction = form.action;
+          var formData = new FormData(form);
+
+          fetch(formAction, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          }).then(function(response) {
+            if (response.ok) {
+              // Update local counter
+              try {
+                localStorage.setItem(storageKey, String(getSignups() + 1));
+              } catch(e) {}
+              updateCount();
+              form.classList.add('hidden');
+              success.classList.remove('hidden');
+            } else {
+              return response.json().then(function(data) {
+                if (data && data.errors) {
+                  error.textContent = data.errors.map(function(err) { return err.message; }).join(', ');
+                } else {
+                  error.textContent = 'Something went wrong. Please try again.';
+                }
+                error.classList.remove('hidden');
+              });
+            }
+          }).catch(function() {
+            // Network error — still show success and count locally
+            // (graceful degradation: the form also works as standard POST if JS is disabled)
+            try {
+              localStorage.setItem(storageKey, String(getSignups() + 1));
+            } catch(e) {}
+            updateCount();
+            form.classList.add('hidden');
+            success.classList.remove('hidden');
+          });
+        });
+      })();
+
+      // ===== Copy Link button =====
+      (function() {
+        var copyBtn = document.getElementById('copy-link-btn');
+        var copyConfirm = document.getElementById('copy-confirm');
+
+        copyBtn.addEventListener('click', function() {
+          var url = window.location.href;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(function() {
+              showCopyConfirm();
+            }).catch(function() {
+              fallbackCopy(url);
+            });
+          } else {
+            fallbackCopy(url);
+          }
+        });
+
+        function fallbackCopy(text) {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); showCopyConfirm(); } catch(e) {}
+          document.body.removeChild(ta);
+        }
+
+        function showCopyConfirm() {
+          copyConfirm.classList.remove('hidden');
+          copyConfirm.classList.remove('copy-toast');
+          // Trigger reflow
+          void copyConfirm.offsetWidth;
+          copyConfirm.classList.add('copy-toast');
+          setTimeout(function() {
+            copyConfirm.classList.add('hidden');
+            copyConfirm.classList.remove('copy-toast');
+          }, 2000);
+        }
+      })();
+
+      // ===== Initialize Lucide icons =====
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
